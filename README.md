@@ -43,7 +43,7 @@ After install it launches full-screen, keeps working without Wi-Fi, and updates 
 - **Timed questions** — optional; faster correct answers earn a bonus.
 - **No repeats** — each unit/level/topic selection tracks which questions have been shown on that device. A question is
   marked "seen" only when it is actually displayed. Nothing repeats until the selection is exhausted; then it starts a
-  fresh cycle (and awards *Full Cycle*). *Reset "seen" questions* on the setup screen forces a fresh cycle.
+  fresh cycle (and awards *Exhausted Remedies*). *Reset "seen" questions* on the setup screen forces a fresh cycle.
 - **Display** — the setup screen has Orientation **Auto / Portrait / Landscape** (applies when the app is in fullscreen on
   Android/Chrome; iOS Safari does not allow orientation locking) and a **Fullscreen** button. On phones the ladder is
   collapsible and the wheel is smaller; the Jeopardy board fits without scrolling in portrait and landscape.
@@ -60,19 +60,20 @@ After install it launches full-screen, keeps working without Wi-Fi, and updates 
 Each lesson has a **brief** condensed from its slide deck (`lessons.js`). A brief counts as *read* once it has been open
 for a time proportional to its length — **words ÷ 3 seconds (≈180 wpm), clamped to 25 s … 240 s** — and partial time
 accumulates per profile (the timer pauses while the tab is hidden). Per-lesson **chips** show progress; reading every
-brief in a unit lights that unit's **Scholar's Lamp** badge, and all four Lamps earn the **Librarian** accolade.
+brief in a unit earns that unit's **Law Library** badge, and all four earn the **Librarian** accolade.
 
 ### Badges, Gates & Accolades
 - **Badges** are per unit and carry the unit's colour and emblem (Scales · Gavel · Maple Leaf · Shield):
-  Initiate, Scholar (70%+), Sage (70%+ at Level 4), Grand Master (all four games), Completionist (seen every question),
-  Swift Mind (10 fast correct answers in a timed game), **Scholar's Lamp** (all briefs read).
+  Sworn In (play a game), Counsel (70%+), King's Counsel (70%+ at Level 4), Full Docket (all four games), Case Closed
+  (seen every question), Summary Judgment (10 fast correct answers in a timed game), **Law Library** (all briefs read).
 - **Gates** — three per unit, cumulative (per-unit answered count and accuracy across all games; All-Units games credit
   each question's own unit):
-  - **Gate I · Articling** — 50 answered · 60% accuracy · Initiate badge
-  - **Gate II · Called to the Bar** — 150 answered · 70% accuracy · Scholar badge · 2 different games played
-  - **Gate III · Bencher** — 300 answered · 75% accuracy · Sage · Scholar's Lamp · all four games
-- **Accolades** are cross-unit (First Steps, Flawless, Hot Streak, Chief Justice, Wheel Wizard, Double Down, Lightning Rod,
-  Exam Ready, Purist, Speed Demon, Polymath, Marathon, Rivalry, Full Cycle, **Librarian**, **Valedictorian**, Laureate).
+  - **Gate I · Articling** — 50 answered · 60% accuracy · Sworn In badge
+  - **Gate II · Called to the Bar** — 150 answered · 70% accuracy · Counsel badge · 2 different games played
+  - **Gate III · Bencher** — 300 answered · 75% accuracy · King's Counsel · Law Library · all four games
+- **Accolades** are cross-unit (First Appearance, Unanimous Verdict, Chain of Precedent, Chief Justice, Circumstantial
+  Evidence, Double Jeopardy, Rapid Ruling, Bar Exam, Due Process, Speedy Trial, Omnibus Bill, Marathon Hearing,
+  Adversarial System, Exhausted Remedies, **Librarian**, **Valedictorian**, Order of the Bench).
   **Valedictorian** = Gate III in all four units + Librarian.
 - **Hidden Golden tier** — each unit has a **seal code** you hand out (e.g. after the unit test). Students redeem it via
   *Profile → "Have a seal code?"*. A redeemed seal marks that unit *Golden* (gold ring on the unit card and badges);

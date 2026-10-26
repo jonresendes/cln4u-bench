@@ -1,5 +1,5 @@
 /* The Bench service worker — offline-first app shell. Bump VERSION on every deploy so installed copies update. */
-const VERSION = 'bench-v1.0.2';
+const VERSION = 'bench-v1.0.3';
 const SHELL = [
   './', './index.html', './style.css',
   './core.js', './games.js', './app.js', './lessons.js',

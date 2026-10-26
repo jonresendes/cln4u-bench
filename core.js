@@ -153,13 +153,13 @@ const Study = {
 
 /* ── badges (per unit, unit-coloured) ── */
 const BADGE_DEFS = [
-  {id:"initiate",name:"Initiate",desc:"Play any game in this unit",test:(p,u)=>(p.stats.byUnit[u]?.games||0)>=1,prog:(p,u)=>[Math.min(1,p.stats.byUnit[u]?.games||0),1]},
-  {id:"scholar",name:"Scholar",desc:"Finish a game with 70%+ correct",test:(p,u)=>!!p.stats.byUnit[u]?.scholar},
-  {id:"sage",name:"Sage",desc:"70%+ correct at Level 4",test:(p,u)=>!!p.stats.byUnit[u]?.sage},
-  {id:"grandmaster",name:"Grand Master",desc:"Play all four games in this unit",test:(p,u)=>Object.keys(p.stats.byUnit[u]?.games_by||{}).length>=4,prog:(p,u)=>[Object.keys(p.stats.byUnit[u]?.games_by||{}).length,4]},
-  {id:"completionist",name:"Completionist",desc:"See every question in this unit at least once",test:(p,u)=>unitSeen(p,u)>=unitTotal(u),prog:(p,u)=>[unitSeen(p,u),unitTotal(u)]},
-  {id:"swift",name:"Swift Mind",desc:"10 correct answers under 5s in one timed game",test:(p,u)=>!!p.stats.byUnit[u]?.swift},
-  {id:"lamp",name:"Scholar's Lamp",desc:"Read every lesson of this unit in the Study Room",test:(p,u)=>Study.unitDone(p,u),prog:(p,u)=>[Study.unitCount(p,u),Study.lessons(u).length]}
+  {id:"initiate",name:"Sworn In",desc:"Play any game in this unit",test:(p,u)=>(p.stats.byUnit[u]?.games||0)>=1,prog:(p,u)=>[Math.min(1,p.stats.byUnit[u]?.games||0),1]},
+  {id:"scholar",name:"Counsel",desc:"Finish a game with 70%+ correct",test:(p,u)=>!!p.stats.byUnit[u]?.scholar},
+  {id:"sage",name:"King's Counsel",desc:"70%+ correct at Level 4",test:(p,u)=>!!p.stats.byUnit[u]?.sage},
+  {id:"grandmaster",name:"Full Docket",desc:"Play all four games in this unit",test:(p,u)=>Object.keys(p.stats.byUnit[u]?.games_by||{}).length>=4,prog:(p,u)=>[Object.keys(p.stats.byUnit[u]?.games_by||{}).length,4]},
+  {id:"completionist",name:"Case Closed",desc:"See every question in this unit at least once",test:(p,u)=>unitSeen(p,u)>=unitTotal(u),prog:(p,u)=>[unitSeen(p,u),unitTotal(u)]},
+  {id:"swift",name:"Summary Judgment",desc:"10 correct answers under 5s in one timed game",test:(p,u)=>!!p.stats.byUnit[u]?.swift},
+  {id:"lamp",name:"Law Library",desc:"Read every lesson of this unit in the Study Room",test:(p,u)=>Study.unitDone(p,u),prog:(p,u)=>[Study.unitCount(p,u),Study.lessons(u).length]}
 ];
 function unitTotal(u){ return BANK.filter(q=>q.u===u).length; }
 function unitSeen(p,u){ let c=0; for(const id in p.seen){ const q=BANK[+id.slice(1)]; if(q&&q.u===u) c++; } return c; }
@@ -167,13 +167,13 @@ function unitAnswered(p,u){ return p.stats.byUnit[u]?.answered||0; }
 function unitAccuracy(p,u){ const b=p.stats.byUnit[u]; return b&&b.answered?b.correct/b.answered:0; }
 
 /* ── Gates (three per unit, cumulative) ──
-   Gate I   Articling      — 50+ questions answered in the unit, 60%+ accuracy, Initiate badge.
-   Gate II  Called to Bar  — 150+ answered, 70%+ accuracy, Scholar badge, 2+ different games played.
-   Gate III Bencher        — 300+ answered, 75%+ accuracy, Sage badge, Scholar's Lamp, all four games. */
+   Gate I   Articling      — 50+ questions answered in the unit, 60%+ accuracy, Sworn In badge.
+   Gate II  Called to Bar  — 150+ answered, 70%+ accuracy, Counsel badge, 2+ different games played.
+   Gate III Bencher        — 300+ answered, 75%+ accuracy, King's Counsel badge, Law Library, all four games. */
 const GATE_DEFS = [
-  {id:1,name:"Gate I · Articling",short:"Articling",desc:"50 answered · 60% accuracy · Initiate",test:(p,u)=>unitAnswered(p,u)>=50&&unitAccuracy(p,u)>=.6&&!!p.badges[u+":initiate"],prog:(p,u)=>[Math.min(unitAnswered(p,u),50),50]},
-  {id:2,name:"Gate II · Called to the Bar",short:"Called to the Bar",desc:"150 answered · 70% accuracy · Scholar · 2 games",test:(p,u)=>unitAnswered(p,u)>=150&&unitAccuracy(p,u)>=.7&&!!p.badges[u+":scholar"]&&Object.keys(p.stats.byUnit[u]?.games_by||{}).length>=2,prog:(p,u)=>[Math.min(unitAnswered(p,u),150),150]},
-  {id:3,name:"Gate III · Bencher",short:"Bencher",desc:"300 answered · 75% accuracy · Sage · Scholar's Lamp · all 4 games",test:(p,u)=>unitAnswered(p,u)>=300&&unitAccuracy(p,u)>=.75&&!!p.badges[u+":sage"]&&!!p.badges[u+":lamp"]&&!!p.badges[u+":grandmaster"],prog:(p,u)=>[Math.min(unitAnswered(p,u),300),300]}
+  {id:1,name:"Gate I · Articling",short:"Articling",desc:"50 answered · 60% accuracy · Sworn In",test:(p,u)=>unitAnswered(p,u)>=50&&unitAccuracy(p,u)>=.6&&!!p.badges[u+":initiate"],prog:(p,u)=>[Math.min(unitAnswered(p,u),50),50]},
+  {id:2,name:"Gate II · Called to the Bar",short:"Called to the Bar",desc:"150 answered · 70% accuracy · Counsel · 2 games",test:(p,u)=>unitAnswered(p,u)>=150&&unitAccuracy(p,u)>=.7&&!!p.badges[u+":scholar"]&&Object.keys(p.stats.byUnit[u]?.games_by||{}).length>=2,prog:(p,u)=>[Math.min(unitAnswered(p,u),150),150]},
+  {id:3,name:"Gate III · Bencher",short:"Bencher",desc:"300 answered · 75% accuracy · King's Counsel · Law Library · all 4 games",test:(p,u)=>unitAnswered(p,u)>=300&&unitAccuracy(p,u)>=.75&&!!p.badges[u+":sage"]&&!!p.badges[u+":lamp"]&&!!p.badges[u+":grandmaster"],prog:(p,u)=>[Math.min(unitAnswered(p,u),300),300]}
 ];
 function gateLevel(p,u){ let g=0; GATE_DEFS.forEach(d=>{ if(p.gates[u+":"+d.id]) g=d.id; }); return g; }
 
@@ -186,23 +186,23 @@ function goldenBench(p){ return [1,2,3,4].every(u=>p.seals[u]); }
 
 /* ── accolades (global) ── */
 const ACCOLADE_DEFS = [
-  {id:"first",name:"First Steps",desc:"Finish your first game",test:p=>p.stats.games>=1},
-  {id:"perfect",name:"Flawless",desc:"100% correct in a game of 10+ questions",test:p=>!!p.stats.perfect},
-  {id:"streak10",name:"Hot Streak",desc:"10 correct answers in a row",test:p=>p.stats.bestStreak>=10},
+  {id:"first",name:"First Appearance",desc:"Finish your first game",test:p=>p.stats.games>=1},
+  {id:"perfect",name:"Unanimous Verdict",desc:"100% correct in a game of 10+ questions",test:p=>!!p.stats.perfect},
+  {id:"streak10",name:"Chain of Precedent",desc:"10 correct answers in a row",test:p=>p.stats.bestStreak>=10},
   {id:"king",name:"Chief Justice",desc:"Reach the top rung in Chief Justice",test:p=>!!p.stats.king},
-  {id:"wizard",name:"Wheel Wizard",desc:"Solve a puzzle with 3 or fewer letters revealed",test:p=>!!p.stats.wizard},
-  {id:"dd",name:"Double Down",desc:"Win a Daily Double wager",test:p=>!!p.stats.dd},
-  {id:"lightning",name:"Lightning Rod",desc:"15+ correct in one Lightning Round",test:p=>!!p.stats.lightning},
-  {id:"exam",name:"Exam Ready",desc:"70%+ on All Units at Level 3 or higher",test:p=>!!p.stats.exam},
-  {id:"purist",name:"Purist",desc:"Finish a Level 4 game with the timer off",test:p=>!!p.stats.purist},
-  {id:"speed",name:"Speed Demon",desc:"Average under 4s per answer in a timed game (10+ Qs)",test:p=>!!p.stats.speed},
-  {id:"polymath",name:"Polymath",desc:"Earn a badge in all four units",test:p=>[1,2,3,4].every(u=>Object.keys(p.badges).some(k=>k.startsWith(u+":")))},
-  {id:"marathon",name:"Marathon",desc:"Answer 250 questions in total",test:p=>p.stats.answered>=250},
-  {id:"rival",name:"Rivalry",desc:"Win a head-to-head game",test:p=>!!p.stats.h2hwin},
-  {id:"cycle",name:"Full Cycle",desc:"Exhaust an entire question pool",test:p=>!!p.stats.cycle},
-  {id:"librarian",name:"Librarian",desc:"Earn the Scholar's Lamp in all four units",test:p=>[1,2,3,4].every(u=>!!p.badges[u+":lamp"])},
+  {id:"wizard",name:"Circumstantial Evidence",desc:"Solve a Wheel puzzle with 3 or fewer letters revealed",test:p=>!!p.stats.wizard},
+  {id:"dd",name:"Double Jeopardy",desc:"Win a Daily Double wager",test:p=>!!p.stats.dd},
+  {id:"lightning",name:"Rapid Ruling",desc:"15+ correct in one Lightning Round",test:p=>!!p.stats.lightning},
+  {id:"exam",name:"Bar Exam",desc:"70%+ on All Units at Level 3 or higher",test:p=>!!p.stats.exam},
+  {id:"purist",name:"Due Process",desc:"Finish a Level 4 game with the timer off",test:p=>!!p.stats.purist},
+  {id:"speed",name:"Speedy Trial",desc:"Average under 4s per answer in a timed game (10+ Qs)",test:p=>!!p.stats.speed},
+  {id:"polymath",name:"Omnibus Bill",desc:"Earn a badge in all four units",test:p=>[1,2,3,4].every(u=>Object.keys(p.badges).some(k=>k.startsWith(u+":")))},
+  {id:"marathon",name:"Marathon Hearing",desc:"Answer 250 questions in total",test:p=>p.stats.answered>=250},
+  {id:"rival",name:"Adversarial System",desc:"Win a head-to-head game",test:p=>!!p.stats.h2hwin},
+  {id:"cycle",name:"Exhausted Remedies",desc:"Exhaust an entire question pool",test:p=>!!p.stats.cycle},
+  {id:"librarian",name:"Librarian",desc:"Earn the Law Library badge in all four units",test:p=>[1,2,3,4].every(u=>!!p.badges[u+":lamp"])},
   {id:"valedictorian",name:"Valedictorian",desc:"Pass Gate III in all four units and earn Librarian",test:p=>[1,2,3,4].every(u=>!!p.gates[u+":3"])&&!!p.accolades.librarian},
-  {id:"laureate",name:"Laureate",desc:"Earn every other accolade",test:p=>ACCOLADE_DEFS.filter(a=>a.id!=="laureate").every(a=>p.accolades[a.id])}
+  {id:"laureate",name:"Order of the Bench",desc:"Earn every other accolade",test:p=>ACCOLADE_DEFS.filter(a=>a.id!=="laureate").every(a=>p.accolades[a.id])}
 ];
 
 /* Re-check badges, gates and accolades; returns newly unlocked things */
