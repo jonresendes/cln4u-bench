@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a1c26"/><stop offset="1" stop-color="#0b0c11"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0cf7a"/><stop offset="1" stop-color="#c9973a"/></linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a24"/><stop offset="1" stop-color="#3a2416"/></linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <circle cx="64" cy="52" r="46" fill="#d4a74a" opacity=".07"/>
+  <!-- scales of justice -->
+  <g fill="none" stroke="#e3b95b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 22v52"/>
+    <path d="M34 34h60"/>
+    <path d="M40 34L28 58h24z"/>
+    <path d="M88 34L76 58h24z"/>
+  </g>
+  <path d="M26 58a14 8 0 0 0 28 0z" fill="url(#gold)"/>
+  <path d="M74 58a14 8 0 0 0 28 0z" fill="url(#gold)"/>
+  <circle cx="64" cy="20" r="4.5" fill="url(#gold)"/>
+  <!-- judge's bench -->
+  <rect x="16" y="76" width="96" height="9" rx="2.5" fill="url(#gold)"/>
+  <rect x="22" y="85" width="84" height="26" rx="3" fill="url(#wood)"/>
+  <rect x="22" y="85" width="84" height="26" rx="3" fill="none" stroke="#d4a74a" stroke-opacity=".45" stroke-width="2"/>
+  <path d="M34 92v12M50 92v12M78 92v12M94 92v12" stroke="#d4a74a" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+</svg>
