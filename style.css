@@ -112,9 +112,15 @@ input,select{font:inherit;color:inherit}
 .hero h1 em{font-style:italic;color:var(--accent)}
 .hero p{max-width:40rem;margin:.8rem auto 0;color:var(--paper-dim);font-size:1.05rem}
 .mantra{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--accent-2);opacity:.85}
-.unit-card{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;padding:1.3rem}
+.home-grid{grid-template-columns:1fr;align-items:stretch}
+@media(min-width:620px){.home-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.home-grid{grid-template-columns:repeat(3,1fr)}}
+.home-grid>div{display:flex}
+.home-grid .unit-card{flex:1;min-height:9.5rem;align-items:start;padding-right:3.2rem}
+.home-grid .unit-card .n{width:2.6rem;text-align:center;padding-top:.1rem}
+.unit-card{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;padding:1.3rem;height:100%}
 .unit-card .n{font-family:var(--serif);font-size:3.2rem;line-height:1;color:var(--accent);opacity:.9;font-weight:700;min-width:2.2rem}
-.unit-card h3{font-size:1.4rem}
+.unit-card h3{font-size:1.35rem;line-height:1.15}
 .unit-card .lessons{font-size:.8rem;color:var(--paper-mute);margin-top:.25rem}
 .unit-card .emblem{position:absolute;right:1rem;bottom:.8rem;opacity:.16;width:4.5rem;height:4.5rem}
 .u1 .unit-card,.u1.card,.unlock.u1{--accent:#d4a74a;--accent-2:#f6e7bf;--accent-rgb:212,167,74}
