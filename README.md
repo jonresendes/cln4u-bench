@@ -101,7 +101,7 @@ Questions live in `unit1.js` … `unit4.js` (Levels 1–4) and `remedial.js` (Re
 `question-bank.csv` is a spreadsheet view of the whole bank for proofreading (last column marks Wheel-eligible answers).
 Lesson briefs live in `lessons.js`.
 
-**After any edit, bump `VERSION` in `sw.js`** (e.g. `bench-v1.0.1`) so installed copies pick up the change, then redeploy.
+**After any edit, bump `VERSION` in `sw.js`** (currently `bench-v1.1.0`) (e.g. `bench-v1.0.1`) so installed copies pick up the change, then redeploy.
 
 ## Files (flat folder — no subfolders)
 ```

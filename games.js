@@ -168,7 +168,7 @@ async function playJeopardy(session,root){
   render();
 }
 
-/* ═══════════════ WHEEL OF WISDOM ═══════════════ */
+/* ═══════════════ WHEEL OF JUSTICE ═══════════════ */
 const WHEEL_SEGS=[500,"BANKRUPT",300,600,200,"LOSE A TURN",400,800,250,350,1000,150,450,700,300,900];
 function wheelSVG(){
   const n=WHEEL_SEGS.length, r=100, cx=100, cy=100; let out="";
